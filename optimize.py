@@ -15,26 +15,25 @@ def main():
     #  electives.
     # -If you're a masochist and take all 3 interfocus labs, I'm not sure if you can count one as an elective or not.
     courses = [
-        co.Course("Intro to FizzBuzz", 4.75, 8, co.Category.CORE_FOCUS, co.Category.ELECTIVE, co.Category.ELECTIVE_CS,
-                  co.Category.ELECTIVE),
-        co.Course("How to Design Manhole Covers", 4.0, 6, co.Category.CORE_FOCUS, co.Category.ELECTIVE_CS,
-                  co.Category.ELECTIVE),
-        co.Course("Twiddling Your Thumbs I", 5.25, 6, co.Category.ELECTIVE_FOCUS, co.Category.ELECTIVE_CS,
-                  co.Category.ELECTIVE),
-        co.Course("Twiddling Your Thumbs II", 5.5, 6, co.Category.ELECTIVE_FOCUS, co.Category.ELECTIVE_CS,
-                  co.Category.ELECTIVE),
-        co.Course("Advanced methods in FizzBuzzing", 5.25, 2, co.Category.SEMINAR_IN_FOCUS),
-        co.Course("Information security Lab: Fuzzing Busily", 5.0, 10, co.Category.ELECTIVE_CS,
-                  co.Category.ELECTIVE).lab(True),
-        co.Course("P = NP, Just Set N=1", 4.25, 4, co.Category.ELECTIVE_CS, co.Category.ELECTIVE),
-        co.Course("Support Vector Machine Guns", 4.75, 4, co.Category.ELECTIVE_CS, co.Category.ELECTIVE),
-        co.Course("The Pass/Fail Course", None, 10, co.Category.ELECTIVE_CS,
-                  co.Category.ELECTIVE).passfail(True),
-        co.Course("Advanced computational algorithms lab", 4.0, 12, co.Category.INTERFOCUS),
-        co.Course("Intro to Buzzsaws", 6.0, 8, co.Category.ELECTIVE),
-        co.Course("Critical Analysis of the Bee Movie", 4.5, 6, co.Category.ELECTIVE),
-        co.Course("FizzBuzz and society", 4.5, 2, co.Category.SCIENCE_IN_PERSPECTIVE),
-        co.Course("Buzzing and Fizzing: What's next?", 5.5, 30, co.Category.THESIS),
+        co.Course("FNC", 5.25, 6, co.Category.CORE_FOCUS,
+                  co.Category.ELECTIVE_FOCUS),
+        co.Course("ML", 5.5, 8, co.Category.CORE_FOCUS,
+                  co.Category.ELECTIVE_CS),
+        co.Course("DM", 5.25, 4, co.Category.ELECTIVE_CS,
+                  co.Category.ELECTIVE_FOCUS),
+        co.Course("IR", 5.25, 4, co.Category.ELECTIVE_CS,
+                  co.Category.ELECTIVE_FOCUS),
+        co.Course("Prob AI", 5.0, 4, co.Category.ELECTIVE_CS,
+                  co.Category.ELECTIVE_FOCUS),
+        co.Course("ML Seminar", 5.5, 2, co.Category.SEMINAR_IN_FOCUS),
+        co.Course("Comp Stats", 5., 10, co.Category.ELECTIVE_CS),
+        co.Course("NLU", 5.5, 4, co.Category.ELECTIVE_CS,
+                  co.Category.ELECTIVE_FOCUS),
+        co.Course("RiCS", 6, 5, co.Category.ELECTIVE_CS),
+        co.Course("ASL", 5, 8, co.Category.INTERFOCUS),
+        co.Course("CIL", 5.25, 6, co.Category.INTERFOCUS),
+        co.Course("SciFi", 6, 2, co.Category.SCIENCE_IN_PERSPECTIVE),
+        co.Course("thesis", 5, 30, co.Category.THESIS), # worst case
     ]
 
     print('=========================================')
@@ -52,7 +51,8 @@ def main():
     if not result.possible:
         print('It looks like you don\'t have enough credits to graduate! :(')
         print(
-            'Have you entered ALL your passed courses? This includes your thesis, GESS courses, and elective courses.')
+            'Have you entered ALL your passed courses? This includes your thesis, GESS courses, and elective courses.'
+        )
     else:
 
         categories_to_names = OrderedDict()
@@ -62,7 +62,9 @@ def main():
         categories_to_names[co.Category.ELECTIVE_CS] = "Elective CS"
         categories_to_names[co.Category.INTERFOCUS] = "Interfocus"
         categories_to_names[co.Category.ELECTIVE] = "Elective"
-        categories_to_names[co.Category.SCIENCE_IN_PERSPECTIVE] = "Science in Perspective (GESS)"
+        categories_to_names[
+            co.Category.
+            SCIENCE_IN_PERSPECTIVE] = "Science in Perspective (GESS)"
         categories_to_names[co.Category.THESIS] = "Master Thesis"
 
         print('Your best course assignments give a grade of', result.max_grade)
@@ -79,7 +81,9 @@ def main():
                     print('\t', course)
                     courses.remove(course)
         if len(courses) > 0:
-            print('Mark these courses as "Performance Assessments without Category":')
+            print(
+                'Mark these courses as "Performance Assessments without Category":'
+            )
             for course in courses:
                 print('\t', course)
     print('\nHave a nice day.')
